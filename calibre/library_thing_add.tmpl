@@ -1,0 +1,13 @@
+program:
+    id = select(field('identifiers'), 'ltid');
+    isbn = select(field('identifiers'), 'isbn');
+    asin = select(field('identifiers'), 'amazon');
+    if id then
+        strcat('<a href="https://www.librarything.com/work/book/', id, '">', field('title'), '</a>')
+    elif isbn then
+        strcat('<a href="https://www.librarything.com/addbooks?search=', isbn, '">', isbn, '</a>')
+    elif asin then
+        strcat('<a href="https://www.librarything.com/addbooks?search=', asin, '">', asin, '</a>')
+    else
+        strcat('<a href="https://www.librarything.com/addbooks?search=', field('title'), ' ', field('author'), '">', field('title'), '</a>')
+    fi;
